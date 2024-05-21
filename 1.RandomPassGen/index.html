@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,82 @@
         <input type="text" id="password" placeholder="Password">
         <img src="images\copy.png" alt="no image"/>
     </div>
-    <button><img src="images\generate.png">Generate Password</button>
+    <button onclick="createPassword()"><img src="images\generate.png">Generate Password</button>
    </div> 
+   <script>
+    const passwordBox = document.getElementById("password")
+    const length = 12; //its a password length whatever length you want you can write
+    const upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+    const lowerCase = 'abcdefghijklmnopqrstuvwxyz';
+    const number = "0123456789";
+    const symbol = "@#$%^&*()_+~}{[]></-=";
+    function createPassword(){
+        const password = "";
+        const allCharacter = upperCase + lowerCase + number + symbol;
+        password += upperCase[Math.floor(Math.random() * upperCase.length)]; // it will generate a random number from this uppercase length which is fro  0 to 25 then add any random value in this password
+        password += lowerCase[Math.floor(Math.random() * lowercase.length)];
+        password += number[Math.floor(Math.random() * number.length)];
+        password += symbol[Math.floor(Math.random() *symbol.length)]
+        while(length > password.length){
+            password += allCharacter[Math.floor(Math.random() *allCharacter.length)]
+        }
+        passwordBox.value = password;
+        
+        console.log( passwordBox.value)
+    }
+    console.log(password)
+   </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Password Generator</title>
+    <link rel="stylesheet" href="style.css"/>
+
+</head>
+<body>
+   <div class="container">
+    <h1>Generate a <br><span>Random Password</span></h1>
+    <div class="display">
+        <input type="text" id="password" placeholder="Password">
+        <img src="images\copy.png" alt="no image" onclick="copyText()"/>
+    </div>
+    <button onclick="createPassword()"><img src="images\generate.png">Generate Password</button>
+   </div> 
+   <script>
+    const passwordBox = document.getElementById("password")
+    const length = 7; //its a password length whatever length you want you can write
+    const upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+    const lowerCase = 'abcdefghijklmnopqrstuvwxyz';
+    const number = "0123456789";
+    const symbol = "@#$%^&*()_+~}{[]></-=";
+    function createPassword(){
+        let password = ""; // Change const to let
+        const allCharacter = upperCase + lowerCase + number + symbol;
+        password += upperCase[Math.floor(Math.random() * upperCase.length)]; // it will generate a random number from this uppercase length which is fro  0 to 25 then add any random value in this password
+        password += lowerCase[Math.floor(Math.random() * lowerCase.length)]; // Change lowercase to lowerCase
+        password += number[Math.floor(Math.random() * number.length)];
+        password += symbol[Math.floor(Math.random() *symbol.length)]
+        while(password.length-2< length){
+
+            password += allCharacter[Math.floor(Math.random() *allCharacter.length)]
+        }
+        passwordBox.value = password;
+        
+        console.log( passwordBox.value)
+    }
+    function copyText(){
+        passwordBox.select()  // this will select the text whatever are in passwordbox
+        //This is necessary because the document.execCommand("copy") method only works with selected text.
+        document.execCommand("copy")
+       /** document.execCommand("copy");: This line executes a browser command to copy the 
+        currently selected text (which we just selected in the previous line) to the clipboard. 
+        The "copy" command tells the browser to copy the selected text.*/
+    }
+   </script>
 </body>
 </html>
